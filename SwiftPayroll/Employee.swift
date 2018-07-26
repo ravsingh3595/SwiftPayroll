@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+class Employee {
+    var e1 = 1
+    
+}
