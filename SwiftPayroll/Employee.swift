@@ -10,16 +10,21 @@ import Foundation
 
 class Employee
 {
-    var employeeId: Int?
-    var employeeName: String?
-    var age: Int?
-    var vehicle: Vehicle?
+    private var employeeId: Int?
+    private var employeeName: String?
+    private var age: Int?
+    private var vehicle: Vehicle?
     
-    init(employeeId: Int, employeeName: String, age: Int)
+    init() {
+        
+    }
+    
+    init(employeeId: Int, employeeName: String, age: Int, vehicle: Vehicle)
     {
         self.employeeId = employeeId
         self.employeeName = employeeName
         self.age = age
+        self.vehicle = vehicle
     }
     // func calculateBirthYear(age) -> Int {    }
     func printMyData() {
@@ -28,6 +33,9 @@ class Employee
             Employee Id: \(employeeId!)
             Name: \(employeeName!)
             Age: \(age!)
+            Vehicle Info:
+            make: \(vehicle?.make ?? "")
+            plate: \(vehicle?.plate)
             """)
     }
 }

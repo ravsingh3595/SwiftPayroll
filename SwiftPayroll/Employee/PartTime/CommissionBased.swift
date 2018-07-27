@@ -12,9 +12,9 @@ class CommissionBased: PartTime
 {
     var commissionPercentage: Double?
     
-    init(employeeId: Int, employeeName: String, age: Int, rate: Double, hoursWorked: Double, commissionPercentage: Double)
+    init(employeeId: Int, employeeName: String, age: Int, rate: Double, hoursWorked: Double, commissionPercentage: Double, vehicle: Vehicle)
     {
-        super.init(employeeId: employeeId, employeeName: employeeName, age: age, rate: rate, hoursWorked: hoursWorked)
+        super.init(employeeId: employeeId, employeeName: employeeName, age: age, rate: rate, hoursWorked: hoursWorked, vehicle: vehicle)
         self.commissionPercentage = commissionPercentage
     }
     
