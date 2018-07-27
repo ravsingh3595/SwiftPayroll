@@ -28,7 +28,9 @@ class Employee
     }
     // func calculateBirthYear(age) -> Int {    }
     func printMyData() {
+        
         print("""
+            ---------------------------------------
             Employee Details
             Employee Id: \(employeeId!)
             Name: \(employeeName!)

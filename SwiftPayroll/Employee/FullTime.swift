@@ -26,6 +26,7 @@ class FullTime: Employee
     
     override func printMyData()
     {
+        super.printMyData()
         print("Salary: \(salary!) \n Bonus: \(bonus!)")
         print("Earnings: \(calEarning())")
     }

@@ -61,33 +61,37 @@ class CSVFile {
     func createCSVFile(from employees: [Employee]) {
         
         var csvTitleString = "\("Employee ID"),\("Employee Name"), \("Age"), \("Employee Type"), \("Vehicle"), \("Make"), \("Plate"), \("isLongDistance"), \("School Name"), \("Hours Worked"), \("Rate"), \("Fixed Amount"), \("Total Salary")\n"
-        var csvDataString = ""
-        var longDistance = ""
+//        var csvDataString = ""
+//        var longDistance = ""
         for employee in employees{
             if employee is Intern{  // write getter & setters
                 // Intern
+                employee.printMyData()
             }else if(employee is FullTime){
                 // FullTime
+                employee.printMyData()
             }else if(employee is CommissionBased){
                 // CommissionBased
+                employee.printMyData()
             }else if(employee is FixedBased){
                 // FixedBased
+                employee.printMyData()
             }
         }
         
     
     
-    csvTitleString = csvTitleString.appending(csvDataString)
-    
-    
-    let fileManager = FileManager.default
-    do {
-    let path = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
-    let fileURL = path.appendingPathComponent("CSVFile.csv")
-    try csvTitleString.write(to: fileURL, atomically: true, encoding: .utf8)
-    } catch {
-    print("error creating file")
-    }
+//    csvTitleString = csvTitleString.appending(csvDataString)
+//
+//
+//    let fileManager = FileManager.default
+//    do {
+//    let path = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
+//    let fileURL = path.appendingPathComponent("CSVFile.csv")
+//    try csvTitleString.write(to: fileURL, atomically: true, encoding: .utf8)
+//    } catch {
+//    print("error creating file")
+//    }
 }
 
 

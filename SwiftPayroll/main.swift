@@ -64,14 +64,14 @@ if let filePath = Bundle.main.url(forResource: "Employee", withExtension: "json"
             }
             
             if let type = employee["type"] as? String{
-                if(type == "Intern"){
+                if(type == EmployeeType.intern.rawValue){
                     let school = employee["schoolName"] as? String
                     empObj = Intern(employeeId: eId!, employeeName: eName!, age: eAge!, schoolName: school!, vehicle: vehicle!)
-                }else if(type == "FullTime"){
+                }else if(type == EmployeeType.fullTime.rawValue){
                     let salary = employee["salary"] as? Double
                     let bonus = employee["bonus"]
                     empObj = FullTime(employeeId: eId!, employeeName: eName!, age: eAge!, salary: salary!, bonus: bonus! as! Double, vehicle: vehicle!)
-                }else if(type == "PartTime/Fixed"){
+                }else if(type == EmployeeType.fixedPartTime.rawValue){
                     let hoursWorked = employee["hoursWorked"] as? Double
                     let rate = employee["rate"] as? Double
                     let fixedAmount = employee["fixedAmount"] as? Double
@@ -88,6 +88,7 @@ if let filePath = Bundle.main.url(forResource: "Employee", withExtension: "json"
             employees.append(empObj!)
         }
         let csvObj = CSVFile()
+        csvObj.createCSVFile(from: employees)
 //        csvObj.createCSV(from: jsonDict)
     }
     catch {
