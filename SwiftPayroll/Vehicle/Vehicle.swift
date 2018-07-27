@@ -12,6 +12,12 @@ class Vehicle
 {
     var make: String?
     var plate: String?
+    var type: String?
+    
+    
+    init() {
+        
+    }
     
     init(make: String, plate: String)
     {
