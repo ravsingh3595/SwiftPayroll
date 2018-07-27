@@ -20,6 +20,7 @@ class Motorcycle: Vehicle
     
     override func printMyData()
     {
+        super.printMyData()
         print("Is Long Distance bike: \(isLongDistance!)")
     }
 }
