@@ -10,7 +10,13 @@ import Foundation
 
 class Car: Vehicle
 {
-    var bootSpace: Double?
+    private var bootSpace: Double?
+    var _bootSpace: Double?
+    {
+        get{
+            return bootSpace
+        }
+    }
     
     init(make: String, plate: String, bootSpace: Double)
     {
@@ -19,6 +25,7 @@ class Car: Vehicle
     }
     
     override func printMyData() {
+        print("Employee has a car")
         super.printMyData()
         print("Boot Space: \(bootSpace!)")
     }

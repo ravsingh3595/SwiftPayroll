@@ -8,12 +8,45 @@
 
 import Foundation
 
-class Employee
+class Employee: IPrintable
 {
     private var employeeId: Int?
+    var _employeeId: Int?
+    {
+        get{
+            return employeeId
+        }
+    }
     private var employeeName: String?
+    var _employeeName: String?
+    {
+        get{
+            return employeeName
+        }
+    }
+    
     private var age: Int?
+    var _age: Int?
+    {
+        get{
+            return age
+        }
+    }
+    
     private var vehicle: Vehicle?
+    var _vehicle: Vehicle?
+    {
+        get{
+            return vehicle
+        }
+    }
+    private var employeeType: String?
+    var _employeeType: String?
+    {
+        get{
+            return employeeType
+        }
+    }
     
     init() {
         
@@ -26,7 +59,11 @@ class Employee
         self.age = age
         self.vehicle = vehicle
     }
-    // func calculateBirthYear(age) -> Int {    }
+    
+    func calEarning() -> Double {
+        return 1000
+    }
+    
     func printMyData() {
         
         print("""
@@ -35,9 +72,19 @@ class Employee
             Employee Id: \(employeeId!)
             Name: \(employeeName!)
             Age: \(age!)
-            Vehicle Info:
-            make: \(vehicle?.make ?? "")
-            plate: \(vehicle?.plate)
             """)
+        if(vehicle is Car){
+            let car: Car = vehicle as! Car
+            car.printMyData()
+            
+        }else if(vehicle is Motorcycle){
+            let motorcycle: Motorcycle = vehicle as! Motorcycle
+            motorcycle.printMyData()
+          
+        }else{
+            print("Employee Has no Vehicle")
+        }
     }
+    
+
 }

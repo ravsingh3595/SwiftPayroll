@@ -11,7 +11,20 @@ import Foundation
 class PartTime: Employee
 {
     var rate: Double?
+    var _rate: Double?
+    {
+        get{
+            return rate
+        }
+    }
+    
     var hoursWorked: Double?
+    var _hoursWorked: Double?
+    {
+        get{
+            return hoursWorked
+        }
+    }
     
     init(employeeId: Int, employeeName: String, age: Int, rate: Double, hoursWorked: Double, vehicle: Vehicle)
     {
@@ -20,9 +33,9 @@ class PartTime: Employee
         self.hoursWorked = hoursWorked
     }
     
-    //    func calEarning() -> Double {
-    //        return salary! + bonus!
-    //    }
+        override func calEarning() -> Double {
+            return 1000
+        }
     
     override func printMyData()
     {

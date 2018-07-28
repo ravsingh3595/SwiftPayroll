@@ -11,6 +11,12 @@ import Foundation
 class Intern: Employee
 {
     var schoolName: String?
+    var _schoolName: String?
+    {
+        get{
+            return schoolName
+        }
+    }
     
     init(employeeId: Int, employeeName: String, age: Int, schoolName: String, vehicle: Vehicle)
     {
@@ -18,7 +24,7 @@ class Intern: Employee
         self.schoolName = schoolName
     }
     
-    func calEarning() -> Double {
+    override func calEarning() -> Double {
         return 1000
     }
     

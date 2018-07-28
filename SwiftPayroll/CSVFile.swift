@@ -21,32 +21,26 @@ class CSVFile {
         
         var csvTitleString = "\("Employee ID"),\("Employee Name"), \("Age"), \("Employee Type"), \("Vehicle"), \("Make"), \("Plate"), \("isLongDistance"), \("School Name"), \("Hours Worked"), \("Rate"), \("Fixed Amount"), \("Total Salary")\n"
         var csvDataString = ""
-        var longDistance = ""
+        
         for employee in employees {
-            if let isLongDistance = employee.vehicle?.isLongDistance{
-                if(isLongDistance){
-                    longDistance = "Yes"
-                }else{
-                    longDistance = "No"
-                }
-            }else{
-                longDistance = "-"
-            }
+           
             
-            if(employee.type == "Intern"){
-                csvDataString = csvDataString.appending("\(employee.id), \(employee.name), \(employee.age), \(employee.type), \(employee.vehicle?.type ?? "None"), \(employee.vehicle?.make ?? "-"), \(employee.vehicle?.plate ?? "-"), \(longDistance), \(employee.schoolName ?? "-"), \(employee.hoursWorked ?? 0), \(employee.rate ?? 0.0), \(employee.fixedAmount ?? 0), \(1000) \n")
-            }else if(employee.type == "FullTime"){
-                csvDataString = csvDataString.appending("\(employee.id), \(employee.name), \(employee.age), \(employee.type), \(employee.vehicle?.type ?? "None"), \(employee.vehicle?.make ?? "-"), \(employee.vehicle?.plate ?? "-"), \(longDistance), \(employee.schoolName ?? "-"), \(employee.hoursWorked ?? 0), \(employee.rate ?? 0.0), \(employee.fixedAmount ?? 0), \(2000) \n")
-            }else if(employee.type == "PartTime/Fixed"){
-                csvDataString = csvDataString.appending("\(employee.id), \(employee.name), \(employee.age), \(employee.type), \(employee.vehicle?.type ?? "None"), \(employee.vehicle?.make ?? "-"), \(employee.vehicle?.plate ?? "-"), \(longDistance), \(employee.schoolName ?? "-"), \(employee.hoursWorked ?? 0), \(employee.rate ?? 0.0), \(employee.fixedAmount ?? 0), \(3000) \n")
+            if(employee.type == EmployeeType.intern.rawValue){
+            
+            
+                csvDataString = appendData(string: csvDataString, employee: employee)
+            }else if(employee.type == EmployeeType.fullTime.rawValue){
+                
+                csvDataString = appendData(string: csvDataString, employee: employee)
+            }else if(employee.type == EmployeeType.fixedPartTime.rawValue){
+                csvDataString = appendData(string: csvDataString, employee: employee)
             }else{
-                csvDataString = csvDataString.appending("\(employee.id), \(employee.name), \(employee.age), \(employee.type), \(employee.vehicle?.type ?? "None"), \(employee.vehicle?.make ?? "-"), \(employee.vehicle?.plate ?? "-"), \(longDistance), \(employee.schoolName ?? "-"), \(employee.hoursWorked ?? 0), \(employee.rate ?? 0.0), \(employee.fixedAmount ?? 0), \(4000) \n")
+                csvDataString = appendData(string: csvDataString, employee: employee)
             }
             
         }
         
         csvTitleString = csvTitleString.appending(csvDataString)
-        
         
         let fileManager = FileManager.default
         do {
@@ -58,42 +52,26 @@ class CSVFile {
         }
     }
     
-    func createCSVFile(from employees: [Employee]) {
-        
-        var csvTitleString = "\("Employee ID"),\("Employee Name"), \("Age"), \("Employee Type"), \("Vehicle"), \("Make"), \("Plate"), \("isLongDistance"), \("School Name"), \("Hours Worked"), \("Rate"), \("Fixed Amount"), \("Total Salary")\n"
-//        var csvDataString = ""
-//        var longDistance = ""
-        for employee in employees{
-            if employee is Intern{  // write getter & setters
-                // Intern
-                employee.printMyData()
-            }else if(employee is FullTime){
-                // FullTime
-                employee.printMyData()
-            }else if(employee is CommissionBased){
-                // CommissionBased
-                employee.printMyData()
-            }else if(employee is FixedBased){
-                // FixedBased
-                employee.printMyData()
+  
+    
+    
+    func appendData(string: String, employee: EmployeeJson) -> String{
+        var longDistance = ""
+        if let isLongDistance = employee.vehicle?.isLongDistance{
+            if(isLongDistance){
+                longDistance = "Yes"
+            }else{
+                longDistance = "No"
             }
+        }else{
+            longDistance = "-"
         }
-        
+        let appendedString = string.appending("\(employee.id), \(employee.name), \(employee.age), \(employee.type), \(employee.vehicle?.type ?? "None"), \(employee.vehicle?.make ?? "-"), \(employee.vehicle?.plate ?? "-"), \(longDistance), \(employee.schoolName ?? "-"), \(employee.hoursWorked ?? 0), \(employee.rate ?? 0.0), \(employee.fixedAmount ?? 0), \(1000) \n")
+        return appendedString
+    }
     
-    
-//    csvTitleString = csvTitleString.appending(csvDataString)
-//
-//
-//    let fileManager = FileManager.default
-//    do {
-//    let path = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
-//    let fileURL = path.appendingPathComponent("CSVFile.csv")
-//    try csvTitleString.write(to: fileURL, atomically: true, encoding: .utf8)
-//    } catch {
-//    print("error creating file")
+//    func calEarning() -> Double{
+//        
 //    }
-}
-
-
-
+    
 }
