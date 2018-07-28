@@ -10,10 +10,21 @@ import Foundation
 
 class Vehicle
 {
-    var make: String?
-    var plate: String?
-    var type: String?
+    private var make: String?
+    var _make: String?
+    {
+        get{
+            return make
+        }
+    }
     
+    private var plate: String?
+    var _plate: String?
+    {
+        get{
+            return plate
+        }
+    }
     
     init() {
         

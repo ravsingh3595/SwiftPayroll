@@ -11,7 +11,20 @@ import Foundation
 class FullTime: Employee
 {
     var salary: Double?
+    var _salary: Double?
+    {
+        get{
+            return salary
+        }
+    }
+    
     var bonus: Double?
+    var _bonus: Double?
+    {
+        get{
+            return bonus
+        }
+    }
     
     init(employeeId: Int, employeeName: String, age: Int, salary: Double, bonus: Double, vehicle: Vehicle)
     {
@@ -20,7 +33,7 @@ class FullTime: Employee
         self.bonus = bonus
     }
     
-    func calEarning() -> Double {
+    override func calEarning() -> Double {
         return salary! + bonus!
     }
     

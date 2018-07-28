@@ -32,6 +32,8 @@ struct EmployeeJson: Codable {
     // parttime/commissioned
     let commissionPercent: Int?
     
+    let totalSalary: Double?
+    
     struct Vehicle: Codable{
         let id: Int
         let make: String
@@ -39,5 +41,7 @@ struct EmployeeJson: Codable {
         let type: String
         let isLongDistance: Bool?
     }
+    
+    
 }
 

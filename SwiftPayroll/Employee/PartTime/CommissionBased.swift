@@ -11,6 +11,12 @@ import Foundation
 class CommissionBased: PartTime
 {
     var commissionPercentage: Double?
+    var _commissionPercentage: Double?
+    {
+        get{
+            return commissionPercentage
+        }
+    }
     
     init(employeeId: Int, employeeName: String, age: Int, rate: Double, hoursWorked: Double, commissionPercentage: Double, vehicle: Vehicle)
     {
@@ -18,7 +24,7 @@ class CommissionBased: PartTime
         self.commissionPercentage = commissionPercentage
     }
     
-    func calEarning() -> Double
+    override func calEarning() -> Double
     {
         return (rate! * hoursWorked!) + commissionPercentage!
     }

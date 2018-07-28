@@ -16,8 +16,6 @@ var employees: [Employee] = [Employee]()
 let cwd = FileManager.default.currentDirectoryPath
 print("script run from:\n" + cwd)
 
-
-
 if let filePath = Bundle.main.url(forResource: "Employee", withExtension: "json"){
 //    let url = URL(string: filePath)!
     
@@ -88,8 +86,37 @@ if let filePath = Bundle.main.url(forResource: "Employee", withExtension: "json"
            
             employees.append(empObj!)
         }
-        let csvObj = CSVFile()
-        csvObj.createCSVFile(from: employees)
+        var totalEarning: Double? = 0.0
+        var employeeDic = [String: Employee]()
+        for (index, employee) in employees.enumerated(){
+            employeeDic["e\(index)"] = employee
+            if employee is Intern{  // write getter & setters
+                // Intern
+                employee.printMyData()
+                totalEarning = totalEarning! + employee.calEarning()
+                
+            }else if(employee is FullTime){
+                // FullTime
+                employee.printMyData()
+                totalEarning = totalEarning! + employee.calEarning()
+                
+            }else if(employee is CommissionBased){
+                // CommissionBased
+                employee.printMyData()
+                totalEarning = totalEarning! + employee.calEarning()
+                
+            }else if(employee is FixedBased){
+                // FixedBased
+                employee.printMyData()
+                totalEarning = totalEarning! + employee.calEarning()
+            }
+        }
+        print("*************************************")
+        print("Total Payroll: \(totalEarning!)")
+        
+        let csvEemployee = CSVEmployee()
+        csvEemployee.createCSV(from: employeeDic)
+        
 //        csvObj.createCSV(from: jsonDict)
     }
     catch {
@@ -119,6 +146,42 @@ if let filePath = Bundle.main.url(forResource: "Employee", withExtension: "json"
 //    print("FAIL-2")
 
 }
+
+
+
+
+
+//
+//
+//func printData(from employees: [Employee]) {
+//    var totalEarning: Double? = 0.0
+//    for employee in employees{
+//        if employee is Intern{  // write getter & setters
+//            // Intern
+//            employee.printMyData()
+//            totalEarning = totalEarning! + employee.calEarning()
+//
+//        }else if(employee is FullTime){
+//            // FullTime
+//            employee.printMyData()
+//            totalEarning = totalEarning! + employee.calEarning()
+//
+//        }else if(employee is CommissionBased){
+//            // CommissionBased
+//            employee.printMyData()
+//            totalEarning = totalEarning! + employee.calEarning()
+//
+//        }else if(employee is FixedBased){
+//            // FixedBased
+//            employee.printMyData()
+//            totalEarning = totalEarning! + employee.calEarning()
+//        }
+//    }
+//    print("*************************************")
+//    print("Total Payroll: \(totalEarning!)")
+//
+//
+//}
 
 
 

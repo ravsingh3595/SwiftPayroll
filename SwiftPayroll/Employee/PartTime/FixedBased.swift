@@ -11,6 +11,12 @@ import Foundation
 class FixedBased: PartTime
 {
     var fixedAmount: Double?
+    var _fixedAmount: Double?
+    {
+        get{
+            return fixedAmount
+        }
+    }
     
     init(employeeId: Int, employeeName: String, age: Int, rate: Double, hoursWorked: Double, fixedAmount: Double, vehicle: Vehicle)
     {
@@ -18,7 +24,7 @@ class FixedBased: PartTime
         self.fixedAmount = fixedAmount
     }
     
-    func calEarning() -> Double
+    override func calEarning() -> Double
     {
         return (rate! * hoursWorked!) + fixedAmount!
     }
