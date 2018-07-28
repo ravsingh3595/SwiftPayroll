@@ -22,6 +22,7 @@ if let filePath = Bundle.main.url(forResource: "Employee", withExtension: "json"
     
     
     /// ---- get dictionary ---- ///
+
     do {
         let data = try Data(contentsOf: filePath)
         let jsonDict: [Dictionary<String, Any>] = try JSONSerialization.jsonObject(with: data as Data, options: JSONSerialization.ReadingOptions.allowFragments) as! [Dictionary<String, Any>]
@@ -124,6 +125,26 @@ if let filePath = Bundle.main.url(forResource: "Employee", withExtension: "json"
     }
 }else{
     print("FAIL-2")
+
+//    do {
+//        let data = try Data(contentsOf: filePath)
+//        let jsonDict: [Dictionary<String, Any>] = try JSONSerialization.jsonObject(with: data as Data, options: JSONSerialization.ReadingOptions.allowFragments) as! [Dictionary<String, Any>]
+//        print(jsonDict)
+//        for employee in jsonDict{
+//            if let id = employee["id"]{
+//                print("id: \(id)")
+//            }
+//        }
+//        let csvObj = CSVFile()
+////        csvObj.createCSV(from: jsonDict)
+//    }
+//    catch {
+//        //Handle error
+//        print("ERROR")
+//    }
+//}else{
+//    print("FAIL-2")
+
 }
 
 
