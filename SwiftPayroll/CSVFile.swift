@@ -46,8 +46,6 @@ class CSVFile {
         }
     }
     
-  
-    
     
     func appendData(string: String, employee: EmployeeJson) -> String{
         var longDistance = ""
@@ -63,9 +61,5 @@ class CSVFile {
         let appendedString = string.appending("\(employee.id), \(employee.name), \(employee.age), \(employee.type), \(employee.vehicle?.type ?? "None"), \(employee.vehicle?.make ?? "-"), \(employee.vehicle?.plate ?? "-"), \(longDistance), \(employee.schoolName ?? "-"), \(employee.hoursWorked ?? 0), \(employee.rate ?? 0.0), \(employee.fixedAmount ?? 0), \(1000) \n")
         return appendedString
     }
-    
-//    func calEarning() -> Double{
-//        
-//    }
     
 }

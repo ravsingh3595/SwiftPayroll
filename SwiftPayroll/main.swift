@@ -135,7 +135,7 @@ if let filePath = Bundle.main.url(forResource: "Employee", withExtension: "json"
             }
         }
         print("*************************************")
-        print("Total Payroll: \(totalEarning!)")
+        print("Total Payroll: \(totalEarning!.appendingCurrency())")
         
         let csvEmployee = CSVEmployee()
         csvEmployee.createCSV(from: employeeDic, TotalPayroll: totalEarning!)
