@@ -1,8 +1,8 @@
 //
 //  Motorcycle.swift
-//  SwiftPayroll
+//  Group2_FinalProject_Payroll
 //
-//  Created by Veerpal on 2018-07-25.
+//  Created by user on 2018-07-23.
 //  Copyright © 2018 RavSingh. All rights reserved.
 //
 
@@ -28,6 +28,6 @@ class Motorcycle: Vehicle
     {
         print("Employee has a Motorcycle")
         super.printMyData()
-        print("Is Long Distance bike: \(isLongDistance!)")
+        print("\tIs Long Distance bike: \(isLongDistance!)")
     }
 }

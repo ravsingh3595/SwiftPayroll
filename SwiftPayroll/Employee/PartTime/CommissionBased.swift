@@ -1,8 +1,8 @@
 //
 //  CommissionBased.swift
-//  SwiftPayroll
+//  Group2_FinalProject_Payroll
 //
-//  Created by Veerpal on 2018-07-25.
+//  Created by user on 2018-07-23.
 //  Copyright © 2018 RavSingh. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 class CommissionBased: PartTime
 {
-    var commissionPercentage: Double?
+    private var commissionPercentage: Double?
     var _commissionPercentage: Double?
     {
         get{
@@ -26,13 +26,14 @@ class CommissionBased: PartTime
     
     override func calEarning() -> Double
     {
-        return (rate! * hoursWorked!) + commissionPercentage!
+        return (_rate! * _hoursWorked!) + commissionPercentage!
     }
     
     override func printMyData()
     {
         super.printMyData()
-        print("Commission Percentage: \(commissionPercentage!)")
+        print("Employee is a Commission Based/ PartTime")
+        print("\tCommission Percentage: \(commissionPercentage!)")
         print("Earnings: \(calEarning())")
     }
 }

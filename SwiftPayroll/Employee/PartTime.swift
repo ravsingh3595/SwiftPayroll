@@ -1,8 +1,8 @@
 //
 //  PartTime.swift
-//  SwiftPayroll
+//  Group2_FinalProject_Payroll
 //
-//  Created by Veerpal on 2018-07-25.
+//  Created by user on 2018-07-23.
 //  Copyright © 2018 RavSingh. All rights reserved.
 //
 
@@ -10,15 +10,14 @@ import Foundation
 
 class PartTime: Employee
 {
-    var rate: Double?
+    private var rate: Double?
     var _rate: Double?
     {
         get{
             return rate
         }
     }
-    
-    var hoursWorked: Double?
+    private var hoursWorked: Double?
     var _hoursWorked: Double?
     {
         get{
@@ -33,13 +32,13 @@ class PartTime: Employee
         self.hoursWorked = hoursWorked
     }
     
-        override func calEarning() -> Double {
-            return 1000
-        }
+    override func calEarning() -> Double {
+        return 1000
+    }
     
     override func printMyData()
     {
         super.printMyData()
-        print("Rate: \(rate!) \n Hours Worked: \(hoursWorked!)")
+        print("\tRate: \(rate!) \n\tHours Worked: \(hoursWorked!)")
     }
 }

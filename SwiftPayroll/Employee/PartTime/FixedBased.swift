@@ -1,8 +1,8 @@
 //
 //  FixedBased.swift
-//  SwiftPayroll
+//  Group2_FinalProject_Payroll
 //
-//  Created by Veerpal on 2018-07-25.
+//  Created by user on 2018-07-23.
 //  Copyright © 2018 RavSingh. All rights reserved.
 //
 
@@ -26,13 +26,14 @@ class FixedBased: PartTime
     
     override func calEarning() -> Double
     {
-        return (rate! * hoursWorked!) + fixedAmount!
+        return (_rate! * _hoursWorked!) + fixedAmount!
     }
     
     override func printMyData()
     {
         super.printMyData()
-        print("Fixed Amount: \(fixedAmount!)")
+        print("Employee is a Fixed Amount/ PartTime")
+        print("\tFixed Amount: \(fixedAmount!)")
         print("Earnings: \(calEarning())")
     }
 }
