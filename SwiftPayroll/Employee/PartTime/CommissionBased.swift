@@ -34,6 +34,6 @@ class CommissionBased: PartTime
         super.printMyData()
         print("Employee is a Commission Based/ PartTime")
         print("\tCommission Percentage: \(commissionPercentage!)")
-        print("Earnings: \(calEarning())")
+        print("Earnings: \(calEarning().appendingCurrency())")
     }
 }

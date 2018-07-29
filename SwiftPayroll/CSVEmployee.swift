@@ -78,22 +78,22 @@ class CSVEmployee {
         if(employee._employeeType == EmployeeType.intern.rawValue)
         {
             let intern = employee as! Intern
-            appendedString = string.appending("\(intern._employeeId!), \(intern._employeeName!), \(intern._age!), \(intern._employeeType!), \(intern._vehicle?._vehicleType ?? "None"), \(intern._vehicle?._make ?? "-"), \(intern._vehicle?._plate ?? "-"), \(isLongDistance!), \(bootSpace!), \(intern._schoolName ?? "-"), \(0.0), \(0.0), \(0.0), \(0.0), \(0.0), \(0.0), \(intern.calEarning()) \n")
+            appendedString = string.appending("\(intern._employeeId!), \(intern._employeeName!), \(intern._age!), \(intern._employeeType!), \(intern._vehicle?._vehicleType ?? "None"), \(intern._vehicle?._make ?? "-"), \(intern._vehicle?._plate ?? "-"), \(isLongDistance!), \(bootSpace!), \(intern._schoolName ?? "-"), \(0.0), \(0.0), \(0.0), \(0.0), \(0.0), \(0.0), \(intern.calEarning().appendingCurrency()) \n")
         }
         else if(employee._employeeType == EmployeeType.fullTime.rawValue)
         {
             let fullTime = employee as! FullTime
-            appendedString = string.appending("\(fullTime._employeeId!), \(fullTime._employeeName!), \(fullTime._age!), \(fullTime._employeeType!), \(fullTime._vehicle?._vehicleType ?? "None"), \(fullTime._vehicle?._make ?? "-"), \(fullTime._vehicle?._plate ?? "-"), \(isLongDistance!), \(bootSpace!), \("-"), \(0.0), \(0.0), \(0.0), \(0.0), \(fullTime._salary ?? 0.0), \(fullTime._bonus ?? 0.0), \(fullTime.calEarning()) \n")
+            appendedString = string.appending("\(fullTime._employeeId!), \(fullTime._employeeName!), \(fullTime._age!), \(fullTime._employeeType!), \(fullTime._vehicle?._vehicleType ?? "None"), \(fullTime._vehicle?._make ?? "-"), \(fullTime._vehicle?._plate ?? "-"), \(isLongDistance!), \(bootSpace!), \("-"), \(0.0), \(0.0), \(0.0), \(0.0), \(fullTime._salary?.appendingCurrency() ?? "0.0"), \(fullTime._bonus?.appendingCurrency() ?? "0.0"), \(fullTime.calEarning().appendingCurrency()) \n")
         }
         else if(employee._employeeType == EmployeeType.commissionPartTime.rawValue)
         {
             let commissionBased = employee as! CommissionBased
-            appendedString = string.appending("\(commissionBased._employeeId!), \(commissionBased._employeeName!), \(commissionBased._age!), \(commissionBased._employeeType!), \(commissionBased._vehicle?._vehicleType ?? "None"), \(commissionBased._vehicle?._make ?? "-"), \(commissionBased._vehicle?._plate ?? "-"), \(isLongDistance!), \(bootSpace!), \("-"), \(commissionBased._hoursWorked ?? 0.0), \(commissionBased._rate ?? 0.0), \(0.0), \(commissionBased._commissionPercentage ?? 0.0), \(0.0), \(0.0), \(commissionBased.calEarning()) \n")
+            appendedString = string.appending("\(commissionBased._employeeId!), \(commissionBased._employeeName!), \(commissionBased._age!), \(commissionBased._employeeType!), \(commissionBased._vehicle?._vehicleType ?? "None"), \(commissionBased._vehicle?._make ?? "-"), \(commissionBased._vehicle?._plate ?? "-"), \(isLongDistance!), \(bootSpace!), \("-"), \(commissionBased._hoursWorked ?? 0.0), \(commissionBased._rate?.appendingCurrency() ?? "0.0"), \(0.0), \(commissionBased._commissionPercentage ?? 0.0), \(0.0), \(0.0), \(commissionBased.calEarning().appendingCurrency()) \n")
         }
         else if(employee._employeeType == EmployeeType.fixedPartTime.rawValue)
         {
             let fixedBased = employee as! FixedBased
-            appendedString = string.appending("\(fixedBased._employeeId!), \(fixedBased._employeeName!), \(fixedBased._age!), \(fixedBased._employeeType!), \(fixedBased._vehicle?._vehicleType ?? "None"), \(fixedBased._vehicle?._make ?? "-"), \(fixedBased._vehicle?._plate ?? "-"), \(isLongDistance!), \(bootSpace!), \("-"), \(fixedBased._hoursWorked ?? 0.0), \(fixedBased._rate ?? 0.0), \(fixedBased._fixedAmount ?? 0.0), \(0.0), \(0.0), \(0.0), \(fixedBased.calEarning()) \n")
+            appendedString = string.appending("\(fixedBased._employeeId!), \(fixedBased._employeeName!), \(fixedBased._age!), \(fixedBased._employeeType!), \(fixedBased._vehicle?._vehicleType ?? "None"), \(fixedBased._vehicle?._make ?? "-"), \(fixedBased._vehicle?._plate ?? "-"), \(isLongDistance!), \(bootSpace!), \("-"), \(fixedBased._hoursWorked ?? 0.0), \(fixedBased._rate?.appendingCurrency() ?? "0.0"), \(fixedBased._fixedAmount?.appendingCurrency() ?? "0.0"), \(0.0), \(0.0), \(0.0), \(fixedBased.calEarning().appendingCurrency()) \n")
         }
         return appendedString!
     }

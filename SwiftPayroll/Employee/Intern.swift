@@ -33,6 +33,6 @@ class Intern: Employee
         super.printMyData()
         print("Employee is a Intern")
         print("\tSchool Name: \(schoolName!)")
-        print("Earnings: \(calEarning())")
+        print("Earnings: \(calEarning().appendingCurrency())")
     }
 }

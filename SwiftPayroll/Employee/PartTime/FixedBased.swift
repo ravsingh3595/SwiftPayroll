@@ -33,7 +33,7 @@ class FixedBased: PartTime
     {
         super.printMyData()
         print("Employee is a Fixed Amount/ PartTime")
-        print("\tFixed Amount: \(fixedAmount!)")
-        print("Earnings: \(calEarning())")
+        print("\tFixed Amount: \(fixedAmount!.appendingCurrency())")
+        print("Earnings: \(calEarning().appendingCurrency())")
     }
 }

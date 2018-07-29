@@ -41,7 +41,7 @@ class FullTime: Employee
     {
         super.printMyData()
         print("Employee is a FullTime")
-        print("\tSalary: \(salary!) \n\tBonus: \(bonus!)")
-        print("Earnings: \(calEarning())")
+        print("\tSalary: \(salary!.appendingCurrency()) \n\tBonus: \(bonus!.appendingCurrency())")
+        print("Earnings: \(calEarning().appendingCurrency())")
     }
 }
