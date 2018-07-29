@@ -1,8 +1,8 @@
 //
 //  Intern.swift
-//  SwiftPayroll
+//  Group2_FinalProject_Payroll
 //
-//  Created by Sonia Rani on 2018-07-25.
+//  Created by user on 2018-07-23.
 //  Copyright © 2018 RavSingh. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 class Intern: Employee
 {
-    var schoolName: String?
+    private var schoolName: String?
     var _schoolName: String?
     {
         get{
@@ -31,7 +31,8 @@ class Intern: Employee
     override func printMyData()
     {
         super.printMyData()
-        print("School Name: \(schoolName!)")
+        print("Employee is a Intern")
+        print("\tSchool Name: \(schoolName!)")
         print("Earnings: \(calEarning())")
     }
 }

@@ -1,9 +1,9 @@
 //
 //  Employee.swift
-//  SwiftPayroll
+//  Group2_FinalProject_Payroll
 //
-//  Created by user on 2018-07-25.
-//  Copyright © 2018 Veerpal. All rights reserved.
+//  Created by user on 2018-07-23.
+//  Copyright © 2018 RavSingh. All rights reserved.
 //
 
 import Foundation
@@ -46,6 +46,10 @@ class Employee: IPrintable
         get{
             return employeeType
         }
+        set(newValue)
+        {
+            employeeType = newValue
+        }
     }
     
     init() {
@@ -80,11 +84,9 @@ class Employee: IPrintable
         }else if(vehicle is Motorcycle){
             let motorcycle: Motorcycle = vehicle as! Motorcycle
             motorcycle.printMyData()
-          
+            
         }else{
             print("Employee Has no Vehicle")
         }
     }
-    
-
 }

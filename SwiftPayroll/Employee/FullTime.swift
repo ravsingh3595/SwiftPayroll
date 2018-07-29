@@ -1,8 +1,8 @@
 //
 //  FullTime.swift
-//  SwiftPayroll
+//  Group2_FinalProject_Payroll
 //
-//  Created by Veerpal on 2018-07-25.
+//  Created by user on 2018-07-23.
 //  Copyright © 2018 RavSingh. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 class FullTime: Employee
 {
-    var salary: Double?
+    private var salary: Double?
     var _salary: Double?
     {
         get{
@@ -18,7 +18,7 @@ class FullTime: Employee
         }
     }
     
-    var bonus: Double?
+    private var bonus: Double?
     var _bonus: Double?
     {
         get{
@@ -40,7 +40,8 @@ class FullTime: Employee
     override func printMyData()
     {
         super.printMyData()
-        print("Salary: \(salary!) \n Bonus: \(bonus!)")
+        print("Employee is a FullTime")
+        print("\tSalary: \(salary!) \n\tBonus: \(bonus!)")
         print("Earnings: \(calEarning())")
     }
 }

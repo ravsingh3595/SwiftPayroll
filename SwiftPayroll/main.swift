@@ -1,42 +1,37 @@
 //
 //  main.swift
-//  SwiftPayroll
+//  Group2_FinalProject_Payroll
 //
-//  Created by user on 2018-07-25.
+//  Created by user on 2018-07-23.
 //  Copyright © 2018 RavSingh. All rights reserved.
 //
 
 import Foundation
 
-print("Hello, World! Test")
-
-var employees: [Employee] = [Employee]()
+var employeeArray: [Employee] = [Employee]()
 
 //To get current Directory
 let cwd = FileManager.default.currentDirectoryPath
 print("script run from:\n" + cwd)
 
-if let filePath = Bundle.main.url(forResource: "Employee", withExtension: "json"){
-//    let url = URL(string: filePath)!
-    
-    
-    
-    /// ---- get dictionary ---- ///
-
+if let filePath = Bundle.main.url(forResource: "Employee", withExtension: "json")
+{
     do {
+        // reading the data from the JSON file
         let data = try Data(contentsOf: filePath)
         let jsonDict: [Dictionary<String, Any>] = try JSONSerialization.jsonObject(with: data as Data, options: JSONSerialization.ReadingOptions.allowFragments) as! [Dictionary<String, Any>]
-        print(jsonDict)
+        //print(jsonDict)
         
         var eId: Int?
         var eName: String?
         var eAge: Int?
         
+        //fetching the data fro the Dictionary made from the JSON extraction
         for employee in jsonDict{
             var empObj: Employee?
             
             if let id = employee["id"]{
-                print("id: \(id)")
+                //print("id: \(id)")
                 eId = id as? Int
             }
             
@@ -48,172 +43,108 @@ if let filePath = Bundle.main.url(forResource: "Employee", withExtension: "json"
                 eAge = age as? Int
             }
             
-            
+            // Checking the vehicle type
             var vehicle: Vehicle?
-            if let v = employee["vehicle"] as? [String: Any]{
-                if let type = v["type"] as? String{
-                    if(type == "Car"){
+            if let v = employee["vehicle"] as? [String: Any]
+            {
+                if let type = v["type"] as? String
+                {
+                    if(type == "Car")
+                    {
                         vehicle = Car(make: (v["make"] as? String)!, plate: (v["plate"] as? String)!, bootSpace: (v["bootSpace"] as? Double)!)
-                    }else{
+                    }
+                    else
+                    {
                         vehicle = Motorcycle(make: (v["make"] as? String)!, plate: (v["plate"]! as? String)!, isLongDistance: true)
                     }
                 }
-            }else{
+            }
+            else
+            {
                 vehicle = Vehicle()
             }
             
-            if let type = employee["type"] as? String{
-                if(type == EmployeeType.intern.rawValue){
+            //Passing the value of parameter in employee's child classes using their constructors
+            if let type = employee["type"] as? String
+            {
+                if(type == EmployeeType.intern.rawValue)
+                {
                     let school = employee["schoolName"] as? String
+                    
                     empObj = Intern(employeeId: eId!, employeeName: eName!, age: eAge!, schoolName: school!, vehicle: vehicle!)
-                }else if(type == EmployeeType.fullTime.rawValue){
+                }
+                else if(type == EmployeeType.fullTime.rawValue)
+                {
                     let salary = employee["salary"] as? Double
-                    let bonus = employee["bonus"]
-                    empObj = FullTime(employeeId: eId!, employeeName: eName!, age: eAge!, salary: salary!, bonus: bonus! as! Double, vehicle: vehicle!)
-                }else if(type == EmployeeType.fixedPartTime.rawValue){
+                    let bonus = employee["bonus"] as? Double
+                    
+                    empObj = FullTime(employeeId: eId!, employeeName: eName!, age: eAge!, salary: salary!, bonus: bonus!, vehicle: vehicle!)
+                }
+                else if(type == EmployeeType.fixedPartTime.rawValue)
+                {
                     let hoursWorked = employee["hoursWorked"] as? Double
                     let rate = employee["rate"] as? Double
                     let fixedAmount = employee["fixedAmount"] as? Double
+                    
                     empObj = FixedBased(employeeId: eId!, employeeName: eName!, age: eAge!, rate: rate!, hoursWorked: hoursWorked!, fixedAmount: fixedAmount!, vehicle: vehicle!)
-                }else{
+                }
+                else
+                {
                     let hoursWorked = employee["hoursWorked"] as? Double
                     let rate = employee["rate"] as? Double
                     let commissionPercent = employee["commissionPercent"] as? Double
+                    
                     empObj = CommissionBased(employeeId: eId!, employeeName: eName!, age: eAge!, rate: rate!, hoursWorked: hoursWorked!, commissionPercentage: commissionPercent!, vehicle: vehicle!)
                 }
             }
-            
-           
-            employees.append(empObj!)
+            employeeArray.append(empObj!)
         }
+        
+        //Printing of all Employee data
         var totalEarning: Double? = 0.0
         var employeeDic = [String: Employee]()
-        for (index, employee) in employees.enumerated(){
+        
+        for (index, employee) in employeeArray.enumerated(){
             employeeDic["e\(index)"] = employee
-            if employee is Intern{  // write getter & setters
-                // Intern
+            if employee is Intern
+            {
                 employee.printMyData()
+                employee._employeeType = EmployeeType.intern.rawValue
                 totalEarning = totalEarning! + employee.calEarning()
                 
-            }else if(employee is FullTime){
-                // FullTime
+            }
+            else if(employee is FullTime)
+            {
                 employee.printMyData()
+                employee._employeeType = EmployeeType.fullTime.rawValue
                 totalEarning = totalEarning! + employee.calEarning()
                 
-            }else if(employee is CommissionBased){
-                // CommissionBased
+            }
+            else if(employee is CommissionBased)
+            {
                 employee.printMyData()
+                employee._employeeType = EmployeeType.commissionPartTime.rawValue
                 totalEarning = totalEarning! + employee.calEarning()
                 
-            }else if(employee is FixedBased){
-                // FixedBased
+            }
+            else if(employee is FixedBased)
+            {
                 employee.printMyData()
+                employee._employeeType = EmployeeType.fixedPartTime.rawValue
                 totalEarning = totalEarning! + employee.calEarning()
             }
         }
         print("*************************************")
         print("Total Payroll: \(totalEarning!)")
         
-        let csvEemployee = CSVEmployee()
-        csvEemployee.createCSV(from: employeeDic)
+        let csvEmployee = CSVEmployee()
+        csvEmployee.createCSV(from: employeeDic, TotalPayroll: totalEarning!)
+    }
         
-//        csvObj.createCSV(from: jsonDict)
-    }
-    catch {
+    catch
+    {
         //Handle error
-        print("ERROR")
+        print(error.localizedDescription)
     }
-}else{
-    print("FAIL-2")
-
-//    do {
-//        let data = try Data(contentsOf: filePath)
-//        let jsonDict: [Dictionary<String, Any>] = try JSONSerialization.jsonObject(with: data as Data, options: JSONSerialization.ReadingOptions.allowFragments) as! [Dictionary<String, Any>]
-//        print(jsonDict)
-//        for employee in jsonDict{
-//            if let id = employee["id"]{
-//                print("id: \(id)")
-//            }
-//        }
-//        let csvObj = CSVFile()
-////        csvObj.createCSV(from: jsonDict)
-//    }
-//    catch {
-//        //Handle error
-//        print("ERROR")
-//    }
-//}else{
-//    print("FAIL-2")
-
 }
-
-
-
-
-
-//
-//
-//func printData(from employees: [Employee]) {
-//    var totalEarning: Double? = 0.0
-//    for employee in employees{
-//        if employee is Intern{  // write getter & setters
-//            // Intern
-//            employee.printMyData()
-//            totalEarning = totalEarning! + employee.calEarning()
-//
-//        }else if(employee is FullTime){
-//            // FullTime
-//            employee.printMyData()
-//            totalEarning = totalEarning! + employee.calEarning()
-//
-//        }else if(employee is CommissionBased){
-//            // CommissionBased
-//            employee.printMyData()
-//            totalEarning = totalEarning! + employee.calEarning()
-//
-//        }else if(employee is FixedBased){
-//            // FixedBased
-//            employee.printMyData()
-//            totalEarning = totalEarning! + employee.calEarning()
-//        }
-//    }
-//    print("*************************************")
-//    print("Total Payroll: \(totalEarning!)")
-//
-//
-//}
-
-
-
-
-
-
-
-
-
-
-
-
-
-///---- conversion using coder ---------///
-/*
- let jsonData = try! Data(contentsOf: filePath)
- 
- let jsonDecoder = JSONDecoder()
- let employees = try? jsonDecoder.decode(Array<EmployeeJson>.self,
- from: jsonData)
- 
- if let employeeArray = employees{
- for employee in employeeArray{
- print(employee.id)
- if let make = employee.vehicle?.make{
- print(make)
- }
- }
- 
- do{
- let csvObj = CSVFile()
- csvObj.createCSV(from: employeeArray)
- }
- }*/
 

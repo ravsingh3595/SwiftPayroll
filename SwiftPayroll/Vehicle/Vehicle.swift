@@ -1,8 +1,8 @@
 //
 //  Vehicle.swift
-//  SwiftPayroll
+//  Group2_FinalProject_Payroll
 //
-//  Created by Veerpal on 2018-07-25.
+//  Created by user on 2018-07-23.
 //  Copyright © 2018 RavSingh. All rights reserved.
 //
 
@@ -25,6 +25,17 @@ class Vehicle
             return plate
         }
     }
+    private var vehicleType: String?
+    var _vehicleType: String?
+    {
+        get{
+            return vehicleType
+        }
+        set(newValue)
+        {
+            vehicleType = newValue
+        }
+    }
     
     init() {
         
@@ -37,6 +48,6 @@ class Vehicle
     }
     
     func printMyData() {
-        print("Make: \(make!) \n Plate: \(plate!)")
+        print("\tMake: \(make!) \n\tPlate: \(plate!)")
     }
 }

@@ -8,12 +8,6 @@
 
 import Foundation
 
-enum EmployeeType: String{
-    case intern = "Intern"
-    case fullTime = "FullTime"
-    case commissionPartTime = "PartTime/Commissioned"
-    case fixedPartTime = "PartTime/Fixed"
-}
 
 class CSVFile {
     
